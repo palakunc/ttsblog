@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Current Blog Posts</h1>
+
+<div class="row">
+ <% @blog_posts.each do |blog_post| %>
+   <div class="col-md-6">
+     <div class="panelpanel-default">
+       <div class="panel-heading">
+        <td><%= link_to blog_post.title, blog_post %></td>
+       </div>
+       <div class="panel-body">
+        <td><%= blog_post.author %></td>
+        <td><%= truncate blog_post.blog_entry, length:25 %></td>
+        <td><%= link_to 'read more', blog_post %></td>
+       </div>
+       <div class="panel">
+        <% blog_post.comments.each do |comment| %>
+        <p><%= comment.author %></p>
+        <p><%= comment.comment_entry %></p>
+      <% end %>
+       </div>
+       <div class="panel-footer">
+         <td><%= link_to 'Edit', edit_blog_post_path(blog_post), class: 'btn btn-warning' %></td>
+         <td><%= link_to 'Destroy', blog_post, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       </div>
+     </div>
+   </div>
+ <% end %>
+</div>
+</table>
